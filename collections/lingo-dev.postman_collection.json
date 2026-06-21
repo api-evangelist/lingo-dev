@@ -1,0 +1,614 @@
+{
+  "item": [
+    {
+      "id": "a1f0b2c3-1111-4a01-9001-000000000001",
+      "name": "Synchronous",
+      "description": {
+        "content": "Synchronous Localization Engine operations that return results in the response.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0b2c3-1111-4a01-9001-000000000002",
+          "name": "Localize key-value content",
+          "request": {
+            "name": "Localize key-value content",
+            "description": {
+              "content": "Translates a record of key-value strings from an optional source locale to a single target locale, preserving structure, glossary, and brand voice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "process",
+                "localize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceLocale\": \"en\",\n  \"targetLocale\": \"es\",\n  \"data\": {\n    \"greeting\": \"Hello, world!\"\n  },\n  \"params\": {\n    \"fast\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1f0b2c3-1111-4a01-9001-000000000003",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "process",
+                    "localize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<api-key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceLocale\": \"en\",\n  \"targetLocale\": \"es\",\n  \"data\": {\n    \"greeting\": \"Hello, world!\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"greeting\": \"¡Hola, mundo!\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1f0b2c3-1111-4a01-9001-000000000004",
+          "name": "Recognize the locale of text",
+          "request": {
+            "name": "Recognize the locale of text",
+            "description": {
+              "content": "Detects the language / locale of a text string and returns a structured locale code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "process",
+                "recognize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Bonjour le monde\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1f0b2c3-1111-4a01-9001-000000000005",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "process",
+                    "recognize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "X-API-Key",
+                    "value": "<api-key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"Bonjour le monde\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"locale\": \"fr\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1f0b2c3-1111-4a01-9001-000000000006",
+          "name": "Estimate localization cost",
+          "request": {
+            "name": "Estimate localization cost",
+            "description": {
+              "content": "Estimates the word / token cost of localizing the provided content before processing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "process",
+                "estimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceLocale\": \"en\",\n  \"targetLocale\": \"de\",\n  \"data\": {\n    \"greeting\": \"Hello, world!\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1f0b2c3-1111-4a01-9001-000000000007",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "process",
+                    "estimate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "X-API-Key",
+                    "value": "<api-key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targetLocale\": \"de\",\n  \"data\": {\n    \"greeting\": \"Hello, world!\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"words\": 2,\n  \"tokens\": 3\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0b2c3-2222-4a01-9001-000000000001",
+      "name": "Account",
+      "description": {
+        "content": "Account and credential operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0b2c3-2222-4a01-9001-000000000002",
+          "name": "Get the authenticated account",
+          "request": {
+            "name": "Get the authenticated account",
+            "description": {
+              "content": "Returns information about the account associated with the supplied API key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1f0b2c3-2222-4a01-9001-000000000003",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "X-API-Key",
+                    "value": "<api-key>"
+                  }
+                ],
+                "method": "GET"
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"usr_123\",\n  \"email\": \"dev@example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1f0b2c3-3333-4a01-9001-000000000001",
+      "name": "Asynchronous",
+      "description": {
+        "content": "Asynchronous localization jobs API. One job group is created with one background job per target locale.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1f0b2c3-3333-4a01-9001-000000000002",
+          "name": "Create a localization job group",
+          "request": {
+            "name": "Create a localization job group",
+            "description": {
+              "content": "Submits content and a list of target locales. Returns 202 with the group ID and per-locale job summaries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                "localization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceLocale\": \"en\",\n  \"targetLocales\": [\n    \"es\",\n    \"fr\",\n    \"de\"\n  ],\n  \"data\": {\n    \"greeting\": \"Hello, world!\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1f0b2c3-3333-4a01-9001-000000000003",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "localization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "X-API-Key",
+                    "value": "<api-key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourceLocale\": \"en\",\n  \"targetLocales\": [\"es\", \"fr\"],\n  \"data\": {\n    \"greeting\": \"Hello, world!\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groupId\": \"grp_123\",\n  \"status\": \"processing\",\n  \"jobs\": [\n    {\n      \"jobId\": \"job_es\",\n      \"targetLocale\": \"es\",\n      \"status\": \"pending\"\n    },\n    {\n      \"jobId\": \"job_fr\",\n      \"targetLocale\": \"fr\",\n      \"status\": \"pending\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1f0b2c3-3333-4a01-9001-000000000004",
+          "name": "List localization jobs",
+          "request": {
+            "name": "List localization jobs",
+            "description": {
+              "content": "Lists localization jobs with pagination and filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                "localization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "disabled": true
+                },
+                {
+                  "key": "cursor",
+                  "value": "",
+                  "disabled": true
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1f0b2c3-3333-4a01-9001-000000000005",
+          "name": "Get a localization job group",
+          "request": {
+            "name": "Get a localization job group",
+            "description": {
+              "content": "Retrieves the status of a localization job group and its per-locale jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                "localization",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "groupId",
+                  "value": "",
+                  "description": "The ID of the job group to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lingo.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b7c3e0d3-d283-4104-bd01-a81e5c6ealing",
+    "name": "Lingo.dev Engine API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Lingo.dev hosted Localization Engine. Authenticated with an organization-scoped X-API-Key header.\n\nContact Support:\n Name: Lingo.dev Support\n URL: https://lingo.dev",
+      "type": "text/plain"
+    }
+  }
+}

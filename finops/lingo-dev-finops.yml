@@ -1,0 +1,101 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Lingo.dev
+providerId: lingo-dev
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- AI
+- Localization
+- Translation
+- i18n
+- Developer Tools
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Lingo.dev spend. Lingo.dev bills a monthly subscription per
+  tier that bundles a translated-word allotment, plus metered overage per
+  additional 1,000 translated words. Internally the engine accounts usage in
+  tokens (roughly 1.3 tokens per English word, with configuration multipliers
+  on input and language expansion on output), but invoices are denominated in
+  translated words. The CLI, Compiler, and SDK are open source; engine usage is
+  the billable component.
+notes: >-
+  Per-tier word allotments and overage rates are subject to change; verify
+  against the Lingo.dev pricing page during reconciliation.
+sources:
+- https://lingo.dev/en/pricing
+- https://lingo.dev/en/docs
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Lingo.dev
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Lingo.dev Localization Engine
+  ServiceCategory: AI and Machine Learning
+  ProviderName: Lingo.dev
+  PublisherName: Lingo.dev
+  InvoiceIssuerName: Lingo.dev
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription-Based
+meters:
+- name: subscription_fee
+  description: Recurring monthly subscription fee per plan tier (Pro, Team).
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: included_words
+  description: Translated words consumed within the plan's monthly allotment.
+  unit: words
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+  - project
+- name: overage_words
+  description: Translated words above the plan allotment, billed per 1,000 words.
+  unit: words
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+  - project
+- name: engine_tokens
+  description: Internal token accounting (~1.3 tokens per English word) underlying word billing.
+  unit: tokens
+  aggregation: sum
+  dimensions:
+  - account
+  - project
+  - locale
+principles:
+- name: Visibility
+  description: Track translated-word burn per project and locale in the dashboard; map to plan allotment.
+- name: Allocation
+  description: Scope API keys per project/team and tag jobs so word spend maps to internal cost centers.
+- name: Optimization
+  description: Use the CLI lockfile so only new or changed content is re-localized; right-size the plan tier to actual word volume; consider bring-your-own-LLM in the CLI for cost-sensitive workloads.
+- name: Accountability
+  description: Assign owners per project/key; review translated-word usage monthly against allotment and overage budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,125 @@
+aid: lingo-dev
+url: https://raw.githubusercontent.com/api-evangelist/lingo-dev/refs/heads/main/apis.yml
+name: Lingo.dev
+kind: company
+description: Lingo.dev (formerly Replexica) is an AI localization platform for
+  software teams. Its hosted Localization Engine exposes a Bearer/X-API-Key REST
+  API and SDK for translating text, objects, chat messages, HTML, and string
+  arrays while preserving structure, brand voice, and glossaries. Open-source
+  tooling - the CLI and the build-time React Compiler - sits on top of the same
+  engine.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- Localization
+- Translation
+- i18n
+- Developer Tools
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: lingo-dev:engine-api-localize
+  name: Lingo.dev Engine API (Localize)
+  tags:
+  - Localization
+  - Translation
+  - Engine
+  - Async
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://lingo.dev/en/docs/api
+  baseURL: https://api.lingo.dev
+  properties:
+  - url: https://lingo.dev/en/docs/api
+    type: Documentation
+  - url: https://lingo.dev/en/docs/api/localization
+    type: APIReference
+  - url: openapi/lingo-dev-openapi.yml
+    type: OpenAPI
+  - url: collections/lingo-dev.postman_collection.json
+    type: PostmanCollection
+  - url: collections/lingo-dev.opencollection.json
+    type: OpenCollection
+  description: The hosted Localization Engine REST API. Synchronous operations
+    (localize, recognize, estimate) translate or analyze key-value content in a
+    single request; the asynchronous jobs API creates a job group with one job
+    per target locale and delivers results via polling, webhook, or WebSocket.
+    Authenticated with an organization-scoped X-API-Key header.
+- aid: lingo-dev:sdk
+  name: Lingo.dev SDK
+  tags:
+  - SDK
+  - JavaScript
+  - PHP
+  - Open Source
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://lingo.dev/en/sdk/javascript
+  baseURL: https://api.lingo.dev
+  properties:
+  - url: https://lingo.dev/en/sdk/javascript
+    type: Documentation
+  - url: https://www.npmjs.com/package/lingo.dev
+    type: SDK
+  - url: openapi/lingo-dev-openapi.yml
+    type: OpenAPI
+  description: Open-source SDKs (JavaScript/TypeScript via the lingo.dev npm
+    package, plus a PHP SDK) that wrap the Engine API. The LingoDotDevEngine
+    client exposes localizeText, localizeObject, localizeChat, localizeHtml,
+    localizeStringArray, batchLocalizeText, recognizeLocale, estimate, and
+    whoami, calling the same hosted engine.
+- aid: lingo-dev:cli
+  name: Lingo.dev CLI
+  tags:
+  - CLI
+  - Open Source
+  - i18n
+  - CI/CD
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://lingo.dev/en/cli
+  baseURL: https://api.lingo.dev
+  properties:
+  - url: https://lingo.dev/en/cli/quick-start
+    type: Documentation
+  - url: https://github.com/lingodotdev/lingo.dev
+    type: SourceCode
+  description: Open-source command-line tool that localizes JSON, YAML, Markdown,
+    CSV, and PO files in one command, tracking a lockfile so only new or changed
+    content is processed. Connects to the Lingo.dev engine by default and can
+    bring your own LLM (OpenAI, Anthropic, Google, Mistral, OpenRouter, Ollama).
+- aid: lingo-dev:compiler
+  name: Lingo.dev Compiler
+  tags:
+  - Compiler
+  - React
+  - Open Source
+  - Build Time
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://lingo.dev/en/compiler
+  baseURL: https://api.lingo.dev
+  properties:
+  - url: https://lingo.dev/en/compiler
+    type: Documentation
+  - url: https://github.com/lingodotdev/lingo.dev
+    type: SourceCode
+  description: Open-source build-time React localization. The Compiler detects
+    translatable strings and generates localized variants at build time without
+    i18n wrappers, translation keys, or t() function calls, using the same
+    localization engine behind the scenes.
+common:
+- type: GitHubOrganization
+  url: https://github.com/lingodotdev
+- type: LinkedIn
+  url: https://www.linkedin.com/company/lingodotdev
+- type: Website
+  url: https://lingo.dev
+- type: Documentation
+  url: https://lingo.dev/en/docs
+- type: Plans
+  url: plans/lingo-dev-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/lingo-dev-rate-limits.yml
+- type: FinOps
+  url: finops/lingo-dev-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,84 @@
+aid: lingo-dev
+name: Lingo.dev
+review:
+  question: Does Lingo.dev expose a documented public WebSocket API?
+  answer: true
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Lingo.dev documents a WebSocket transport for real-time progress on the
+    asynchronous localization and provisioning job APIs (live group snapshots
+    as locale jobs complete), alongside webhook delivery. The primary,
+    fully-documented request/response surface is REST under
+    https://api.lingo.dev and is modeled in openapi/lingo-dev-openapi.yml. The
+    exact WebSocket channel path and message schema are not published in
+    enough detail to author a faithful AsyncAPI document at review time, so no
+    AsyncAPI artifact was created; the WebSocket surface is noted here and the
+    REST + async jobs API is modeled in OpenAPI.
+findings:
+  summary: |
+    Lingo.dev (formerly Replexica) operates a hosted Localization Engine with
+    a REST API at https://api.lingo.dev authenticated by an organization-scoped
+    X-API-Key header. Two modes share the same engine, glossary, and brand
+    voice: synchronous operations (localize, recognize, estimate) that return
+    results in the response, and an asynchronous jobs API that creates a job
+    group with one durable background job per target locale, delivering results
+    via polling, webhook, or WebSocket. The CLI, the build-time React Compiler,
+    and the SDKs (JavaScript/TypeScript npm package lingo.dev, plus PHP) are
+    open source (Apache-2.0) and call the same hosted engine; bring-your-own-LLM
+    is supported in the CLI but the managed engine is the commercial product.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.lingo.dev
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: Per-locale completion/failure events delivered to a caller-supplied webhook URL for async jobs.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: true
+      note: Real-time progress streaming (group snapshots) for asynchronous localization and provisioning jobs. Channel path / message schema not published in full.
+  endpointsConfirmedRest:
+    - POST https://api.lingo.dev/process/localize
+    - POST https://api.lingo.dev/process/recognize
+    - POST https://api.lingo.dev/process/estimate
+    - GET  https://api.lingo.dev/users/me
+    - POST https://api.lingo.dev/jobs/localization
+    - GET  https://api.lingo.dev/jobs/localization
+    - GET  https://api.lingo.dev/jobs/localization/{groupId}
+  ossVsEngine:
+    openSource:
+      - Lingo.dev CLI (localizes JSON/YAML/Markdown/CSV/PO with a lockfile)
+      - Lingo.dev Compiler (build-time React localization)
+      - Lingo.dev SDK (JavaScript/TypeScript via npm lingo.dev; PHP SDK)
+    commercialEngine:
+      - Hosted Localization Engine reached via https://api.lingo.dev with X-API-Key; billed by translated-word volume per plan.
+sources:
+  - url: https://lingo.dev/en/docs/api
+    type: Documentation
+    note: Engine API overview; base URL https://api.lingo.dev, X-API-Key header, synchronous vs asynchronous modes.
+  - url: https://lingo.dev/en/docs/api/localization
+    type: APIReference
+    note: Asynchronous localization jobs API; POST /jobs/localization returns 202 with group ID and per-locale jobs; webhook + WebSocket delivery.
+  - url: https://lingo.dev/en/sdk/javascript
+    type: Documentation
+    note: SDK methods (localizeText, localizeObject, localizeChat, localizeHtml, localizeStringArray, batchLocalizeText, recognizeLocale, estimate, whoami) over X-API-Key.
+  - url: https://github.com/lingodotdev/lingo.dev
+    type: SourceCode
+    note: Apache-2.0 monorepo for CLI, Compiler, and SDK; SDK posts to /process/localize, /process/recognize, /process/estimate, GET /users/me at https://api.lingo.dev.
+  - url: https://lingo.dev/en/pricing
+    type: Documentation
+    note: Hobby (free, 10k words), Pro ($30/mo, 20k words), Team ($600/mo, 100k words), Enterprise (custom); overage per 1,000 translated words.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    A WebSocket transport is documented for async job progress, but the
+    channel path and message payloads are not published in sufficient detail
+    to model faithfully in AsyncAPI. The REST surface (synchronous process/*
+    operations plus the asynchronous /jobs/localization group API) is modeled
+    in openapi/lingo-dev-openapi.yml, and the WebSocket + webhook transports
+    are documented explicitly in this review so they are not misrepresented.

@@ -1,0 +1,160 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Lingo.dev
+providerId: lingo-dev
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- AI
+- Localization
+- Translation
+- i18n
+- Developer Tools
+- Plans
+description: >-
+  Lingo.dev uses subscription tiers that bundle a monthly allotment of
+  translated words, with metered overage per additional 1,000 words. All paid
+  tiers include the open-source CLI, Compiler, and Engine SDK/API, plus brand
+  voice, context awareness, unlimited glossaries, unlimited languages, and
+  CI/CD integration. Internally usage is tracked in tokens (roughly 1.3 tokens
+  per English word on average), but plans are billed against translated words.
+notes: >-
+  Word allotments and prices reflect the Lingo.dev pricing page; verify current
+  values during reconciliation as tiers change.
+sources:
+- https://lingo.dev/en/pricing
+- https://lingo.dev/en/docs
+plans:
+- id: lingo-dev-hobby
+  name: Hobby
+  type: free
+  description: >-
+    Free tier with a monthly translated-word allotment, brand voice and
+    context awareness, unlimited glossaries and languages, CI/CD integration,
+    and single-project support.
+  entries:
+  - label: Included Translated Words
+    name: hobby_words
+    type: free
+    metric: words
+    limit: 10000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  elements:
+  - name: Localization Engine API
+  - name: CLI
+  - name: Compiler
+  - name: Unlimited Glossaries
+  - name: Unlimited Languages
+- id: lingo-dev-pro
+  name: Pro
+  type: subscription
+  description: >-
+    Paid individual tier with a larger word allotment, metered overage, and
+    priority email support.
+  entries:
+  - label: Monthly Subscription
+    name: pro_subscription
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $30 per month
+    userMultiplied: false
+  - label: Included Translated Words
+    name: pro_words
+    type: subscription
+    metric: words
+    limit: 20000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Additional Translated Words
+    name: pro_overage
+    type: usage
+    metric: words
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: $2.50 per additional 1,000 words
+    userMultiplied: false
+  elements:
+  - name: Localization Engine API
+  - name: Priority Email Support
+- id: lingo-dev-team
+  name: Team
+  type: subscription
+  description: >-
+    Team tier with a large word allotment, lower overage rate, unlimited
+    projects, web editor, private Slack channel, and additional integrations.
+  entries:
+  - label: Monthly Subscription
+    name: team_subscription
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $600 per month
+    userMultiplied: false
+  - label: Included Translated Words
+    name: team_words
+    type: subscription
+    metric: words
+    limit: 100000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Additional Translated Words
+    name: team_overage
+    type: usage
+    metric: words
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: $0.25 per additional 1,000 words
+    userMultiplied: false
+  elements:
+  - name: Unlimited Projects
+  - name: Web Editor
+  - name: Private Slack Channel
+  - name: Additional Integrations
+- id: lingo-dev-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom-priced tier with custom word-volume allocations, SLAs, dedicated
+    support, and custom feature development. Contact Lingo.dev sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Word Volume
+  - name: SLAs
+  - name: Dedicated Support
+  - name: Custom Feature Development
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

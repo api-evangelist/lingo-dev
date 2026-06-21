@@ -1,0 +1,62 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Lingo.dev
+providerId: lingo-dev
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Localization
+- Translation
+- i18n
+- Developer Tools
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Lingo.dev Localization Engine is metered primarily by translated-word
+  volume tied to the account's plan allotment rather than by published
+  per-minute request quotas. Requests are authenticated with an
+  organization-scoped X-API-Key; exhausting the plan's monthly word allotment
+  moves usage into metered overage (or is blocked on the free tier). Specific
+  per-minute request and concurrency limits are not publicly reconciled in
+  this artifact.
+notes: >-
+  Verify current request, concurrency, and word-volume limits in the Lingo.dev
+  dashboard and platform docs during reconciliation; the asynchronous jobs API
+  is designed to absorb large multi-locale workloads as durable background
+  jobs.
+sources:
+- https://lingo.dev/en/docs/api
+- https://lingo.dev/en/docs/platform/api-keys
+- https://lingo.dev/en/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: Monthly Translated Words
+  scope: account
+  metric: words
+  limit: per plan allotment
+  notes: 10,000 (Hobby), 20,000 (Pro), 100,000 (Team); overage metered per 1,000 words above allotment.
+- name: Requests Per Minute (RPM)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-account request rate; not publicly published as a fixed value.
+- name: Concurrent Jobs
+  scope: account
+  metric: jobs
+  limit: see provider documentation
+  notes: Asynchronous job groups run one durable background job per target locale.
+policies:
+- name: Word-Volume Metering
+  description: Usage is metered against the plan's monthly translated-word allotment, then billed as overage.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor 429 / Retry-After responses.
+- name: Asynchronous Offload
+  description: Large multi-locale workloads should use the async jobs API so work runs as durable platform workflows that survive restarts.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
