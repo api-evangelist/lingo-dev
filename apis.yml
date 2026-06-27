@@ -59,7 +59,7 @@ apis:
   - url: https://lingo.dev/en/sdk/javascript
     type: Documentation
   - url: https://www.npmjs.com/package/lingo.dev
-    type: SDK
+    type: SDKs
   - url: openapi/lingo-dev-openapi.yml
     type: OpenAPI
   description: Open-source SDKs (JavaScript/TypeScript via the lingo.dev npm
