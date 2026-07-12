@@ -106,6 +106,12 @@ apis:
     i18n wrappers, translation keys, or t() function calls, using the same
     localization engine behind the scenes.
 common:
+- type: VulnerabilityDisclosure
+  url: security/lingo-dev-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/lingo-dev-domain-security.yml
+- type: Authentication
+  url: authentication/lingo-dev-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/lingodotdev
 - type: LinkedIn
@@ -120,6 +126,8 @@ common:
   url: rate-limits/lingo-dev-rate-limits.yml
 - type: FinOps
   url: finops/lingo-dev-finops.yml
+- type: Blog
+  url: https://lingo.dev/en/blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
