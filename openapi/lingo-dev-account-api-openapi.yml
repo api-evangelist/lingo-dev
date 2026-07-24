@@ -1,0 +1,49 @@
+openapi: 3.0.1
+info:
+  title: Lingo.dev Engine Account API
+  description: REST API for the Lingo.dev (formerly Replexica) hosted Localization Engine. Synchronous operations localize, recognize, and estimate key-value content in a single request; the asynchronous jobs API submits content and a set of target locales and creates a job group with one independent job per locale, with results delivered via polling, webhook, or WebSocket. All requests are authenticated with an organization-scoped API key sent in the X-API-Key header.
+  termsOfService: https://lingo.dev/en/terms
+  contact:
+    name: Lingo.dev Support
+    url: https://lingo.dev
+  version: '1.0'
+servers:
+- url: https://api.lingo.dev
+  description: Lingo.dev Localization Engine
+security:
+- ApiKeyAuth: []
+tags:
+- name: Account
+paths:
+  /users/me:
+    get:
+      operationId: whoami
+      tags:
+      - Account
+      summary: Get the authenticated account
+      description: Returns information about the account associated with the supplied API key. Backs the SDK whoami method and is used to validate credentials.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhoAmIResponse'
+        '401':
+          description: Missing or invalid API key.
+components:
+  schemas:
+    WhoAmIResponse:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email of the authenticated account.
+        id:
+          type: string
+          description: Account identifier.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

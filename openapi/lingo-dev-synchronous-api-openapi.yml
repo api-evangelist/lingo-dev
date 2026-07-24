@@ -1,0 +1,187 @@
+openapi: 3.0.1
+info:
+  title: Lingo.dev Engine Account Synchronous API
+  description: REST API for the Lingo.dev (formerly Replexica) hosted Localization Engine. Synchronous operations localize, recognize, and estimate key-value content in a single request; the asynchronous jobs API submits content and a set of target locales and creates a job group with one independent job per locale, with results delivered via polling, webhook, or WebSocket. All requests are authenticated with an organization-scoped API key sent in the X-API-Key header.
+  termsOfService: https://lingo.dev/en/terms
+  contact:
+    name: Lingo.dev Support
+    url: https://lingo.dev
+  version: '1.0'
+servers:
+- url: https://api.lingo.dev
+  description: Lingo.dev Localization Engine
+security:
+- ApiKeyAuth: []
+tags:
+- name: Synchronous
+paths:
+  /process/localize:
+    post:
+      operationId: localize
+      tags:
+      - Synchronous
+      summary: Localize key-value content
+      description: Translates a record of key-value strings from an optional source locale to a single target locale, preserving structure, glossary terms, and brand voice. Returns the translated data in the response. This is the endpoint that backs the SDK localizeText, localizeObject, localizeChat, localizeHtml, localizeStringArray, and batchLocalizeText methods.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocalizeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalizeResponse'
+        '401':
+          description: Missing or invalid API key.
+        '422':
+          description: Invalid request payload.
+        '429':
+          description: Rate limit exceeded.
+  /process/recognize:
+    post:
+      operationId: recognize
+      tags:
+      - Synchronous
+      summary: Recognize the locale of text
+      description: Detects the language / locale of a text string and returns a structured locale code. Backs the SDK recognizeLocale method.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecognizeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecognizeResponse'
+        '401':
+          description: Missing or invalid API key.
+        '422':
+          description: Invalid request payload.
+  /process/estimate:
+    post:
+      operationId: estimate
+      tags:
+      - Synchronous
+      summary: Estimate localization cost
+      description: Estimates the token / word cost of localizing the provided content before processing. Backs the SDK estimate method.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateResponse'
+        '401':
+          description: Missing or invalid API key.
+components:
+  schemas:
+    EstimateResponse:
+      type: object
+      properties:
+        words:
+          type: integer
+          description: Estimated word count for the localization.
+        tokens:
+          type: integer
+          description: Estimated token consumption.
+    LocalizeResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: string
+          description: The localized key-value record.
+          example:
+            greeting: ¡Hola, mundo!
+    EstimateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        sourceLocale:
+          type: string
+          nullable: true
+        targetLocale:
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+    LocalizeRequest:
+      type: object
+      required:
+      - targetLocale
+      - data
+      properties:
+        sourceLocale:
+          type: string
+          nullable: true
+          description: Source locale code, or null to auto-detect.
+          example: en
+        targetLocale:
+          type: string
+          description: Target locale code.
+          example: es
+        data:
+          type: object
+          additionalProperties:
+            type: string
+          description: Record of key-value strings to localize.
+          example:
+            greeting: Hello, world!
+        reference:
+          type: object
+          description: Optional reference translations to guide the engine.
+          additionalProperties: true
+        hints:
+          type: object
+          description: Optional per-key array of hint strings.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        params:
+          type: object
+          properties:
+            fast:
+              type: boolean
+              description: Trade some quality for lower latency.
+        engineId:
+          type: string
+          description: Optional engine identifier to route the request.
+    RecognizeRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: Text to analyze for locale detection.
+          example: Bonjour le monde
+    RecognizeResponse:
+      type: object
+      properties:
+        locale:
+          type: string
+          description: Detected locale code.
+          example: fr
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
