@@ -8,7 +8,20 @@ description: Lingo.dev (formerly Replexica) is an AI localization platform for
   arrays while preserving structure, brand voice, and glossaries. Open-source
   tooling - the CLI and the build-time React Compiler - sits on top of the same
   engine.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lingo-dev.png
 tags:
 - AI
 - Localization
@@ -19,54 +32,6 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: lingo-dev:engine-api-localize
-  name: Lingo.dev Engine API (Localize)
-  tags:
-  - Localization
-  - Translation
-  - Engine
-  - Async
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://lingo.dev/en/docs/api
-  baseURL: https://api.lingo.dev
-  properties:
-  - url: https://lingo.dev/en/docs/api
-    type: Documentation
-  - url: https://lingo.dev/en/docs/api/localization
-    type: APIReference
-  - url: openapi/lingo-dev-openapi.yml
-    type: OpenAPI
-  - url: collections/lingo-dev.postman_collection.json
-    type: PostmanCollection
-  - url: collections/lingo-dev.opencollection.json
-    type: OpenCollection
-  description: The hosted Localization Engine REST API. Synchronous operations
-    (localize, recognize, estimate) translate or analyze key-value content in a
-    single request; the asynchronous jobs API creates a job group with one job
-    per target locale and delivers results via polling, webhook, or WebSocket.
-    Authenticated with an organization-scoped X-API-Key header.
-- aid: lingo-dev:sdk
-  name: Lingo.dev SDK
-  tags:
-  - SDK
-  - JavaScript
-  - PHP
-  - Open Source
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://lingo.dev/en/sdk/javascript
-  baseURL: https://api.lingo.dev
-  properties:
-  - url: https://lingo.dev/en/sdk/javascript
-    type: Documentation
-  - url: https://www.npmjs.com/package/lingo.dev
-    type: SDKs
-  - url: openapi/lingo-dev-openapi.yml
-    type: OpenAPI
-  description: Open-source SDKs (JavaScript/TypeScript via the lingo.dev npm
-    package, plus a PHP SDK) that wrap the Engine API. The LingoDotDevEngine
-    client exposes localizeText, localizeObject, localizeChat, localizeHtml,
-    localizeStringArray, batchLocalizeText, recognizeLocale, estimate, and
-    whoami, calling the same hosted engine.
 - aid: lingo-dev:cli
   name: Lingo.dev CLI
   tags:
@@ -82,10 +47,10 @@ apis:
     type: Documentation
   - url: https://github.com/lingodotdev/lingo.dev
     type: SourceCode
-  description: Open-source command-line tool that localizes JSON, YAML, Markdown,
-    CSV, and PO files in one command, tracking a lockfile so only new or changed
-    content is processed. Connects to the Lingo.dev engine by default and can
-    bring your own LLM (OpenAI, Anthropic, Google, Mistral, OpenRouter, Ollama).
+  description: >-
+    Open-source command-line tool that localizes JSON, YAML, Markdown, CSV, and PO files in one command,
+    tracking a lockfile so only new or changed content is processed. Connects to the Lingo.dev engine
+    by default and can bring your own LLM (OpenAI, Anthropic, Google, Mistral, OpenRouter, Ollama).
 - aid: lingo-dev:compiler
   name: Lingo.dev Compiler
   tags:
@@ -101,10 +66,76 @@ apis:
     type: Documentation
   - url: https://github.com/lingodotdev/lingo.dev
     type: SourceCode
-  description: Open-source build-time React localization. The Compiler detects
-    translatable strings and generates localized variants at build time without
-    i18n wrappers, translation keys, or t() function calls, using the same
-    localization engine behind the scenes.
+  description: >-
+    Open-source build-time React localization. The Compiler detects translatable strings and generates
+    localized variants at build time without i18n wrappers, translation keys, or t() function calls, using
+    the same localization engine behind the scenes.
+- aid: lingo-dev:lingo-dev-account-api
+  name: Lingo.dev Account API
+  description: The Account API from Lingo.dev — 1 operation(s) for account.
+  humanURL: https://lingo.dev/en/docs/api
+  baseURL: https://api.lingo.dev
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/lingo-dev-account-api-openapi.yml
+  - type: Documentation
+    url: https://lingo.dev/en/docs/api
+  - type: APIReference
+    url: https://lingo.dev/en/docs/api/localization
+  - type: PostmanCollection
+    url: collections/lingo-dev.postman_collection.json
+  - type: OpenCollection
+    url: collections/lingo-dev.opencollection.json
+  - type: Documentation
+    url: https://lingo.dev/en/sdk/javascript
+  - type: SDKs
+    url: https://www.npmjs.com/package/lingo.dev
+- aid: lingo-dev:lingo-dev-asynchronous-api
+  name: Lingo.dev Asynchronous API
+  description: The Asynchronous API from Lingo.dev — 2 operation(s) for asynchronous.
+  humanURL: https://lingo.dev/en/docs/api
+  baseURL: https://api.lingo.dev
+  tags:
+  - Asynchronous
+  properties:
+  - type: OpenAPI
+    url: openapi/lingo-dev-asynchronous-api-openapi.yml
+  - type: Documentation
+    url: https://lingo.dev/en/docs/api
+  - type: APIReference
+    url: https://lingo.dev/en/docs/api/localization
+  - type: PostmanCollection
+    url: collections/lingo-dev.postman_collection.json
+  - type: OpenCollection
+    url: collections/lingo-dev.opencollection.json
+  - type: Documentation
+    url: https://lingo.dev/en/sdk/javascript
+  - type: SDKs
+    url: https://www.npmjs.com/package/lingo.dev
+- aid: lingo-dev:lingo-dev-synchronous-api
+  name: Lingo.dev Synchronous API
+  description: The Synchronous API from Lingo.dev — 3 operation(s) for synchronous.
+  humanURL: https://lingo.dev/en/docs/api
+  baseURL: https://api.lingo.dev
+  tags:
+  - Synchronous
+  properties:
+  - type: OpenAPI
+    url: openapi/lingo-dev-synchronous-api-openapi.yml
+  - type: Documentation
+    url: https://lingo.dev/en/docs/api
+  - type: APIReference
+    url: https://lingo.dev/en/docs/api/localization
+  - type: PostmanCollection
+    url: collections/lingo-dev.postman_collection.json
+  - type: OpenCollection
+    url: collections/lingo-dev.opencollection.json
+  - type: Documentation
+    url: https://lingo.dev/en/sdk/javascript
+  - type: SDKs
+    url: https://www.npmjs.com/package/lingo.dev
 common:
 - type: AgenticAccess
   url: agentic-access/lingo-dev-agentic-access.yml
