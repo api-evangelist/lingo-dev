@@ -1,0 +1,18 @@
+{
+  "provider": "lingo-dev",
+  "sources": [
+    "lingo-dev-account-api-openapi.yml",
+    "lingo-dev-asynchronous-api-openapi.yml",
+    "lingo-dev-synchronous-api-openapi.yml"
+  ],
+  "outputs": [
+    "lingo-dev-account-api-openapi.yml",
+    "lingo-dev-asynchronous-api-openapi.yml",
+    "lingo-dev-synchronous-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

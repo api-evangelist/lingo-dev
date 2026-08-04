@@ -1,0 +1,377 @@
+openapi: 3.0.1
+info:
+  title: Lingo.dev Engine API
+  description: >-
+    REST API for the Lingo.dev (formerly Replexica) hosted Localization Engine.
+    Synchronous operations localize, recognize, and estimate key-value content
+    in a single request; the asynchronous jobs API submits content and a set of
+    target locales and creates a job group with one independent job per locale,
+    with results delivered via polling, webhook, or WebSocket. All requests are
+    authenticated with an organization-scoped API key sent in the X-API-Key
+    header.
+  termsOfService: https://lingo.dev/en/terms
+  contact:
+    name: Lingo.dev Support
+    url: https://lingo.dev
+  version: '1.0'
+servers:
+  - url: https://api.lingo.dev
+    description: Lingo.dev Localization Engine
+security:
+  - ApiKeyAuth: []
+paths:
+  /process/localize:
+    post:
+      operationId: localize
+      tags:
+        - Synchronous
+      summary: Localize key-value content
+      description: >-
+        Translates a record of key-value strings from an optional source locale
+        to a single target locale, preserving structure, glossary terms, and
+        brand voice. Returns the translated data in the response. This is the
+        endpoint that backs the SDK localizeText, localizeObject, localizeChat,
+        localizeHtml, localizeStringArray, and batchLocalizeText methods.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocalizeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalizeResponse'
+        '401':
+          description: Missing or invalid API key.
+        '422':
+          description: Invalid request payload.
+        '429':
+          description: Rate limit exceeded.
+  /process/recognize:
+    post:
+      operationId: recognize
+      tags:
+        - Synchronous
+      summary: Recognize the locale of text
+      description: >-
+        Detects the language / locale of a text string and returns a structured
+        locale code. Backs the SDK recognizeLocale method.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecognizeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecognizeResponse'
+        '401':
+          description: Missing or invalid API key.
+        '422':
+          description: Invalid request payload.
+  /process/estimate:
+    post:
+      operationId: estimate
+      tags:
+        - Synchronous
+      summary: Estimate localization cost
+      description: >-
+        Estimates the token / word cost of localizing the provided content
+        before processing. Backs the SDK estimate method.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateResponse'
+        '401':
+          description: Missing or invalid API key.
+  /users/me:
+    get:
+      operationId: whoami
+      tags:
+        - Account
+      summary: Get the authenticated account
+      description: >-
+        Returns information about the account associated with the supplied API
+        key. Backs the SDK whoami method and is used to validate credentials.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhoAmIResponse'
+        '401':
+          description: Missing or invalid API key.
+  /jobs/localization:
+    post:
+      operationId: createLocalizationJobGroup
+      tags:
+        - Asynchronous
+      summary: Create an asynchronous localization job group
+      description: >-
+        Submits content and a list of target locales. Creates a job group with
+        one independent background job per locale and returns 202 with the group
+        ID and per-locale job summaries. Results are delivered per locale via
+        polling, webhook, or WebSocket as each job completes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateJobGroupRequest'
+      responses:
+        '202':
+          description: Accepted. Job group created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobGroup'
+        '401':
+          description: Missing or invalid API key.
+        '422':
+          description: Invalid request payload.
+    get:
+      operationId: listLocalizationJobs
+      tags:
+        - Asynchronous
+      summary: List localization jobs
+      description: Lists localization jobs with pagination and filtering.
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Maximum number of jobs to return.
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Pagination cursor.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobList'
+  /jobs/localization/{groupId}:
+    get:
+      operationId: getLocalizationJobGroup
+      tags:
+        - Asynchronous
+      summary: Get a localization job group
+      description: Retrieves the status of a localization job group and its per-locale jobs.
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the job group to retrieve.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobGroup'
+        '404':
+          description: Job group not found.
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    LocalizeRequest:
+      type: object
+      required:
+        - targetLocale
+        - data
+      properties:
+        sourceLocale:
+          type: string
+          nullable: true
+          description: Source locale code, or null to auto-detect.
+          example: en
+        targetLocale:
+          type: string
+          description: Target locale code.
+          example: es
+        data:
+          type: object
+          additionalProperties:
+            type: string
+          description: Record of key-value strings to localize.
+          example:
+            greeting: Hello, world!
+        reference:
+          type: object
+          description: Optional reference translations to guide the engine.
+          additionalProperties: true
+        hints:
+          type: object
+          description: Optional per-key array of hint strings.
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        params:
+          type: object
+          properties:
+            fast:
+              type: boolean
+              description: Trade some quality for lower latency.
+        engineId:
+          type: string
+          description: Optional engine identifier to route the request.
+    LocalizeResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: string
+          description: The localized key-value record.
+          example:
+            greeting: "¡Hola, mundo!"
+    RecognizeRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: Text to analyze for locale detection.
+          example: Bonjour le monde
+    RecognizeResponse:
+      type: object
+      properties:
+        locale:
+          type: string
+          description: Detected locale code.
+          example: fr
+    EstimateRequest:
+      type: object
+      required:
+        - data
+      properties:
+        sourceLocale:
+          type: string
+          nullable: true
+        targetLocale:
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+    EstimateResponse:
+      type: object
+      properties:
+        words:
+          type: integer
+          description: Estimated word count for the localization.
+        tokens:
+          type: integer
+          description: Estimated token consumption.
+    WhoAmIResponse:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email of the authenticated account.
+        id:
+          type: string
+          description: Account identifier.
+    CreateJobGroupRequest:
+      type: object
+      required:
+        - data
+        - targetLocales
+      properties:
+        sourceLocale:
+          type: string
+          nullable: true
+          example: en
+        targetLocales:
+          type: array
+          items:
+            type: string
+          description: One job is created per target locale.
+          example:
+            - es
+            - fr
+            - de
+        data:
+          type: object
+          additionalProperties:
+            type: string
+        webhookUrl:
+          type: string
+          description: Optional URL to receive per-locale completion events.
+    JobGroup:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Identifier of the job group.
+        status:
+          type: string
+          enum:
+            - pending
+            - processing
+            - completed
+            - partial
+            - failed
+          description: Aggregate status; partial when some locale jobs fail.
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+    Job:
+      type: object
+      properties:
+        jobId:
+          type: string
+        targetLocale:
+          type: string
+        status:
+          type: string
+          enum:
+            - pending
+            - processing
+            - completed
+            - failed
+        data:
+          type: object
+          additionalProperties:
+            type: string
+          description: Localized output (present when completed).
+    JobList:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        nextCursor:
+          type: string
+          nullable: true
