@@ -1,0 +1,495 @@
+{
+  "item": [
+    {
+      "id": "e4a89dfa-bc9c-4f36-8b77-42cb12d07788",
+      "name": "Asynchronous",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "80d19ce3-fcbb-451b-9e34-364286524532",
+          "name": "Create an asynchronous localization job group",
+          "request": {
+            "name": "Create an asynchronous localization job group",
+            "description": {
+              "content": "Submits content and a list of target locales. Creates a job group with one independent background job per locale and returns 202 with the group ID and per-locale job summaries. Results are delivered per locale via polling, webhook, or WebSocket as each job completes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                "localization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"targetLocales\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sourceLocale\": \"<string>\",\n  \"webhookUrl\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d45dd4b-b943-4d20-b56a-341cc6ced4a6",
+              "name": "Accepted. Job group created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "localization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"key_0\": \"<string>\"\n  },\n  \"targetLocales\": [\n    \"es\",\n    \"fr\",\n    \"de\"\n  ],\n  \"sourceLocale\": \"en\",\n  \"webhookUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groupId\": \"string\",\n  \"status\": \"completed\",\n  \"jobs\": [\n    {\n      \"jobId\": \"string\",\n      \"targetLocale\": \"string\",\n      \"status\": \"pending\",\n      \"data\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"jobId\": \"string\",\n      \"targetLocale\": \"string\",\n      \"status\": \"pending\",\n      \"data\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b077b5e2-3bf7-47c1-bd9f-40520d5173e7",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "localization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"key_0\": \"<string>\"\n  },\n  \"targetLocales\": [\n    \"es\",\n    \"fr\",\n    \"de\"\n  ],\n  \"sourceLocale\": \"en\",\n  \"webhookUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5ff9967-8458-4198-aa21-c379c65eba1e",
+              "name": "Invalid request payload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "localization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"key_0\": \"<string>\"\n  },\n  \"targetLocales\": [\n    \"es\",\n    \"fr\",\n    \"de\"\n  ],\n  \"sourceLocale\": \"en\",\n  \"webhookUrl\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3104cabe-96ff-454a-9d90-4833faaab553",
+          "name": "List localization jobs",
+          "request": {
+            "name": "List localization jobs",
+            "description": {
+              "content": "Lists localization jobs with pagination and filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                "localization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of jobs to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "429378b5-5211-46c1-b6a2-1e78086b021e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "localization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobs\": [\n    {\n      \"jobId\": \"string\",\n      \"targetLocale\": \"string\",\n      \"status\": \"completed\",\n      \"data\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"jobId\": \"string\",\n      \"targetLocale\": \"string\",\n      \"status\": \"completed\",\n      \"data\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    }\n  ],\n  \"nextCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38c9011c-d346-41f6-b2eb-f614f326ebce",
+          "name": "Get a localization job group",
+          "request": {
+            "name": "Get a localization job group",
+            "description": {
+              "content": "Retrieves the status of a localization job group and its per-locale jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                "localization",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupId",
+                  "description": "(Required) The ID of the job group to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4fd02e77-c79d-45b2-9e14-eb95189f3401",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "localization",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) The ID of the job group to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groupId\": \"string\",\n  \"status\": \"failed\",\n  \"jobs\": [\n    {\n      \"jobId\": \"string\",\n      \"targetLocale\": \"string\",\n      \"status\": \"processing\",\n      \"data\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"jobId\": \"string\",\n      \"targetLocale\": \"string\",\n      \"status\": \"completed\",\n      \"data\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e905e8b0-5a4b-41e6-abe0-780ff07abd8d",
+              "name": "Job group not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "localization",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupId",
+                      "description": "(Required) The ID of the job group to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lingo.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9927d5ef-d2cd-47bf-ae2b-cd56575dfed1",
+    "name": "Lingo.dev Engine Account Asynchronous API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Lingo.dev (formerly Replexica) hosted Localization Engine. Synchronous operations localize, recognize, and estimate key-value content in a single request; the asynchronous jobs API submits content and a set of target locales and creates a job group with one independent job per locale, with results delivered via polling, webhook, or WebSocket. All requests are authenticated with an organization-scoped API key sent in the X-API-Key header.\n\nContact Support:\n Name: Lingo.dev Support",
+      "type": "text/plain"
+    }
+  }
+}

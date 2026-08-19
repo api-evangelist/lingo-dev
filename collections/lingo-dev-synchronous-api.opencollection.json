@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lingo.dev Engine Account Synchronous API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Synchronous",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Localize key-value content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lingo.dev/process/localize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Translates a record of key-value strings from an optional source locale to a single target locale, preserving structure, glossary terms, and brand voice. Returns the translated data in the response. This is the endpoint that backs the SDK localizeText, localizeObject, localizeChat, localizeHtml, localizeStringArray, and batchLocalizeText methods."
+        },
+        {
+          "info": {
+            "name": "Recognize the locale of text",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lingo.dev/process/recognize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Detects the language / locale of a text string and returns a structured locale code. Backs the SDK recognizeLocale method."
+        },
+        {
+          "info": {
+            "name": "Estimate localization cost",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lingo.dev/process/estimate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Estimates the token / word cost of localizing the provided content before processing. Backs the SDK estimate method."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

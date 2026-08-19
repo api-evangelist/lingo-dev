@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lingo.dev Engine Account Asynchronous API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Asynchronous",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List localization jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lingo.dev/jobs/localization",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of jobs to return."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "Lists localization jobs with pagination and filtering."
+        },
+        {
+          "info": {
+            "name": "Create an asynchronous localization job group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lingo.dev/jobs/localization",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits content and a list of target locales. Creates a job group with one independent background job per locale and returns 202 with the group ID and per-locale job summaries. Results are delivered per locale via polling, webhook, or WebSocket as each job completes."
+        },
+        {
+          "info": {
+            "name": "Get a localization job group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lingo.dev/jobs/localization/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job group to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieves the status of a localization job group and its per-locale jobs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
