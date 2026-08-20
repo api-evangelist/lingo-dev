@@ -23,6 +23,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lingo-dev.png
 tags:
+- Artificial Intelligence
+- Localization
+- Translation
+- i18n
+- Developer Tools
+tags_raw:
 - AI
 - Localization
 - Translation
@@ -35,6 +41,11 @@ apis:
 - aid: lingo-dev:cli
   name: Lingo.dev CLI
   tags:
+  - CLI
+  - Open-Source
+  - i18n
+  - CI/CD
+  tags_raw:
   - CLI
   - Open Source
   - i18n
@@ -54,6 +65,11 @@ apis:
 - aid: lingo-dev:compiler
   name: Lingo.dev Compiler
   tags:
+  - Compiler
+  - React
+  - Open-Source
+  - Build-time
+  tags_raw:
   - Compiler
   - React
   - Open Source
