@@ -78,7 +78,7 @@ apis:
 - aid: lingo-dev:compiler
   name: Lingo.dev Compiler
   tags:
-  - Compiler
+  - Compilers
   - React
   - Open-Source
   - Build-time
