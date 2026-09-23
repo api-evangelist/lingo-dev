@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lingo.dev Engine Account Asynchronous API
+  title: Lingo.dev Engine Asynchronous API
   description: REST API for the Lingo.dev (formerly Replexica) hosted Localization Engine. Synchronous operations localize, recognize, and estimate key-value content in a single request; the asynchronous jobs API submits content and a set of target locales and creates a job group with one independent job per locale, with results delivered via polling, webhook, or WebSocket. All requests are authenticated with an organization-scoped API key sent in the X-API-Key header.
   termsOfService: https://lingo.dev/en/terms
   contact:
@@ -88,42 +88,6 @@ paths:
           description: Job group not found.
 components:
   schemas:
-    CreateJobGroupRequest:
-      type: object
-      required:
-      - data
-      - targetLocales
-      properties:
-        sourceLocale:
-          type: string
-          nullable: true
-          example: en
-        targetLocales:
-          type: array
-          items:
-            type: string
-          description: One job is created per target locale.
-          example:
-          - es
-          - fr
-          - de
-        data:
-          type: object
-          additionalProperties:
-            type: string
-        webhookUrl:
-          type: string
-          description: Optional URL to receive per-locale completion events.
-    JobList:
-      type: object
-      properties:
-        jobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-        nextCursor:
-          type: string
-          nullable: true
     Job:
       type: object
       properties:
@@ -143,6 +107,17 @@ components:
           additionalProperties:
             type: string
           description: Localized output (present when completed).
+    JobList:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        nextCursor:
+          type:
+          - string
+          - 'null'
     JobGroup:
       type: object
       properties:
@@ -162,6 +137,33 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Job'
+    CreateJobGroupRequest:
+      type: object
+      required:
+      - data
+      - targetLocales
+      properties:
+        sourceLocale:
+          type:
+          - string
+          - 'null'
+          example: en
+        targetLocales:
+          type: array
+          items:
+            type: string
+          description: One job is created per target locale.
+          example:
+          - es
+          - fr
+          - de
+        data:
+          type: object
+          additionalProperties:
+            type: string
+        webhookUrl:
+          type: string
+          description: Optional URL to receive per-locale completion events.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

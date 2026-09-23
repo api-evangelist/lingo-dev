@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Lingo.dev Engine Account API
   description: REST API for the Lingo.dev (formerly Replexica) hosted Localization Engine. Synchronous operations localize, recognize, and estimate key-value content in a single request; the asynchronous jobs API submits content and a set of target locales and creates a job group with one independent job per locale, with results delivered via polling, webhook, or WebSocket. All requests are authenticated with an organization-scoped API key sent in the X-API-Key header.
