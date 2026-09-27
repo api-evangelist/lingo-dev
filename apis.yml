@@ -7,17 +7,22 @@ description: Lingo.dev (formerly Replexica) is an AI localization platform for s
   messages, HTML, and string arrays while preserving structure, brand voice, and glossaries. Open-source
   tooling - the CLI and the build-time React Compiler - sits on top of the same engine.
 deliveryModel:
-  model: unknown
-  open_source: unknown
+  model: open-core
+  license: Apache-2.0
+  license_evidence:
+    repo: lingodotdev/lingo.dev
+    spdx: Apache-2.0
+    stars: 5404
+  open_source: true
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: medium
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-license
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -56,7 +61,7 @@ apis:
   name: Lingo.dev CLI
   tags:
   - CLI
-  - Open-Source
+  - Open Source
   - i18n
   - CI/CD
   tags_raw:
@@ -64,6 +69,7 @@ apis:
   - Open Source
   - i18n
   - CI/CD
+  - Open-Source
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://lingo.dev/en/cli
   baseURL: https://api.lingo.dev
@@ -80,13 +86,14 @@ apis:
   tags:
   - Compilers
   - React
-  - Open-Source
+  - Open Source
   - Build-time
   tags_raw:
   - Compiler
   - React
   - Open Source
   - Build Time
+  - Open-Source
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://lingo.dev/en/compiler
   baseURL: https://api.lingo.dev

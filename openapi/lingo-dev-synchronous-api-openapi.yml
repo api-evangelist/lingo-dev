@@ -89,6 +89,15 @@ paths:
           description: Missing or invalid API key.
 components:
   schemas:
+    RecognizeRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: Text to analyze for locale detection.
+          example: Bonjour le monde
     LocalizeResponse:
       type: object
       properties:
@@ -99,6 +108,28 @@ components:
           description: The localized key-value record.
           example:
             greeting: ¡Hola, mundo!
+    RecognizeResponse:
+      type: object
+      properties:
+        locale:
+          type: string
+          description: Detected locale code.
+          example: fr
+    EstimateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        sourceLocale:
+          type:
+          - string
+          - 'null'
+        targetLocale:
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
     LocalizeRequest:
       type: object
       required:
@@ -142,21 +173,6 @@ components:
         engineId:
           type: string
           description: Optional engine identifier to route the request.
-    EstimateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        sourceLocale:
-          type:
-          - string
-          - 'null'
-        targetLocale:
-          type: string
-        data:
-          type: object
-          additionalProperties:
-            type: string
     EstimateResponse:
       type: object
       properties:
@@ -166,22 +182,6 @@ components:
         tokens:
           type: integer
           description: Estimated token consumption.
-    RecognizeRequest:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: Text to analyze for locale detection.
-          example: Bonjour le monde
-    RecognizeResponse:
-      type: object
-      properties:
-        locale:
-          type: string
-          description: Detected locale code.
-          example: fr
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
