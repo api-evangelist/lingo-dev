@@ -88,6 +88,17 @@ paths:
           description: Job group not found.
 components:
   schemas:
+    JobList:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        nextCursor:
+          type:
+          - string
+          - 'null'
     Job:
       type: object
       properties:
@@ -107,36 +118,6 @@ components:
           additionalProperties:
             type: string
           description: Localized output (present when completed).
-    JobList:
-      type: object
-      properties:
-        jobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-        nextCursor:
-          type:
-          - string
-          - 'null'
-    JobGroup:
-      type: object
-      properties:
-        groupId:
-          type: string
-          description: Identifier of the job group.
-        status:
-          type: string
-          enum:
-          - pending
-          - processing
-          - completed
-          - partial
-          - failed
-          description: Aggregate status; partial when some locale jobs fail.
-        jobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
     CreateJobGroupRequest:
       type: object
       required:
@@ -164,6 +145,25 @@ components:
         webhookUrl:
           type: string
           description: Optional URL to receive per-locale completion events.
+    JobGroup:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Identifier of the job group.
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - partial
+          - failed
+          description: Aggregate status; partial when some locale jobs fail.
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -89,25 +89,6 @@ paths:
           description: Missing or invalid API key.
 components:
   schemas:
-    RecognizeRequest:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: Text to analyze for locale detection.
-          example: Bonjour le monde
-    LocalizeResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties:
-            type: string
-          description: The localized key-value record.
-          example:
-            greeting: ¡Hola, mundo!
     RecognizeResponse:
       type: object
       properties:
@@ -130,6 +111,34 @@ components:
           type: object
           additionalProperties:
             type: string
+    RecognizeRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: Text to analyze for locale detection.
+          example: Bonjour le monde
+    LocalizeResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: string
+          description: The localized key-value record.
+          example:
+            greeting: ¡Hola, mundo!
+    EstimateResponse:
+      type: object
+      properties:
+        words:
+          type: integer
+          description: Estimated word count for the localization.
+        tokens:
+          type: integer
+          description: Estimated token consumption.
     LocalizeRequest:
       type: object
       required:
@@ -173,15 +182,6 @@ components:
         engineId:
           type: string
           description: Optional engine identifier to route the request.
-    EstimateResponse:
-      type: object
-      properties:
-        words:
-          type: integer
-          description: Estimated word count for the localization.
-        tokens:
-          type: integer
-          description: Estimated token consumption.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
