@@ -89,56 +89,6 @@ paths:
           description: Missing or invalid API key.
 components:
   schemas:
-    RecognizeResponse:
-      type: object
-      properties:
-        locale:
-          type: string
-          description: Detected locale code.
-          example: fr
-    EstimateRequest:
-      type: object
-      required:
-      - data
-      properties:
-        sourceLocale:
-          type:
-          - string
-          - 'null'
-        targetLocale:
-          type: string
-        data:
-          type: object
-          additionalProperties:
-            type: string
-    RecognizeRequest:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: Text to analyze for locale detection.
-          example: Bonjour le monde
-    LocalizeResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties:
-            type: string
-          description: The localized key-value record.
-          example:
-            greeting: ¡Hola, mundo!
-    EstimateResponse:
-      type: object
-      properties:
-        words:
-          type: integer
-          description: Estimated word count for the localization.
-        tokens:
-          type: integer
-          description: Estimated token consumption.
     LocalizeRequest:
       type: object
       required:
@@ -182,6 +132,56 @@ components:
         engineId:
           type: string
           description: Optional engine identifier to route the request.
+    RecognizeRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: Text to analyze for locale detection.
+          example: Bonjour le monde
+    LocalizeResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: string
+          description: The localized key-value record.
+          example:
+            greeting: ¡Hola, mundo!
+    EstimateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        sourceLocale:
+          type:
+          - string
+          - 'null'
+        targetLocale:
+          type: string
+        data:
+          type: object
+          additionalProperties:
+            type: string
+    EstimateResponse:
+      type: object
+      properties:
+        words:
+          type: integer
+          description: Estimated word count for the localization.
+        tokens:
+          type: integer
+          description: Estimated token consumption.
+    RecognizeResponse:
+      type: object
+      properties:
+        locale:
+          type: string
+          description: Detected locale code.
+          example: fr
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

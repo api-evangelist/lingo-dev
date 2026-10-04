@@ -99,6 +99,25 @@ components:
           type:
           - string
           - 'null'
+    JobGroup:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Identifier of the job group.
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - completed
+          - partial
+          - failed
+          description: Aggregate status; partial when some locale jobs fail.
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
     Job:
       type: object
       properties:
@@ -145,25 +164,6 @@ components:
         webhookUrl:
           type: string
           description: Optional URL to receive per-locale completion events.
-    JobGroup:
-      type: object
-      properties:
-        groupId:
-          type: string
-          description: Identifier of the job group.
-        status:
-          type: string
-          enum:
-          - pending
-          - processing
-          - completed
-          - partial
-          - failed
-          description: Aggregate status; partial when some locale jobs fail.
-        jobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
