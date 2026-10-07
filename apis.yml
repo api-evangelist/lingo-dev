@@ -172,6 +172,8 @@ apis:
   - type: SDKs
     url: https://www.npmjs.com/package/lingo.dev
 common:
+- type: Pricing
+  url: https://lingo.dev/en/pricing
 - type: AgenticAccess
   url: agentic-access/lingo-dev-agentic-access.yml
 - type: VulnerabilityDisclosure
