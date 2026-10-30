@@ -1,4 +1,4 @@
-# Lingo.dev (lingo-dev)
+# Lingo.dev
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,114 +66,124 @@
 
 Lingo.dev (formerly Replexica) is an AI localization platform for software teams. Its hosted Localization Engine exposes a Bearer/X-API-Key REST API and SDK for translating text, objects, chat messages, HTML, and string arrays while preserving structure, brand voice, and glossaries. Open-source tooling - the CLI and the build-time React Compiler - sits on top of the same engine.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/lingo-dev/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/lingo-dev/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · Localization · Translation · i18n · Developer Tools · Internationalization
 
-## Tags
+## Lingo.dev on APIs.io
 
-- AI
-- Localization
-- Translation
-- i18n
-- Developer Tools
+Everything profiled for Lingo.dev is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/lingo-dev/](https://apis.io/providers/lingo-dev/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [Lingo.dev CLI](https://apis.io/apis/lingo-dev/cli/) — Open-source command-line tool that localizes JSON, YAML, Markdown, CSV, and PO files in one command, tracking a lockfile so only new or changed content is…
+- [Lingo.dev Compiler](https://apis.io/apis/lingo-dev/compiler/) — Open-source build-time React localization. The Compiler detects translatable strings and generates localized variants at build time without i18n wrappers,…
+- [Lingo.dev Account API](https://apis.io/apis/lingo-dev/lingo-dev-account-api/) — The Account API from Lingo.dev — 1 operation(s) for account.
+- [Lingo.dev Asynchronous API](https://apis.io/apis/lingo-dev/lingo-dev-asynchronous-api/) — The Asynchronous API from Lingo.dev — 2 operation(s) for asynchronous.
+- [Lingo.dev Synchronous API](https://apis.io/apis/lingo-dev/lingo-dev-synchronous-api/) — The Synchronous API from Lingo.dev — 3 operation(s) for synchronous.
 
-## APIs
+### Published properties
 
-### Lingo.dev Engine API (Localize)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The hosted Localization Engine REST API. Synchronous operations (localize, recognize, estimate) translate or analyze key-value content in a single request; the asynchronous jobs API creates a job group with one job per target locale and delivers results via polling, webhook, or WebSocket. Authenticated with an organization-scoped X-API-Key header.
+#### Agentic access (1)
 
-- **Human URL:** [https://lingo.dev/en/docs/api](https://lingo.dev/en/docs/api)
-- **Base URL:** `https://api.lingo.dev`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Lingo Dev Agentic Access](https://apis.io/agentic-access/lingo-dev/lingo-dev-agentic-access/)
 
-- Localization
-- Translation
-- Engine
-- Async
+#### Collections (4)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://lingo.dev/en/docs/api)
-- [API Reference](https://lingo.dev/en/docs/api/localization)
-- [OpenAPI](openapi/lingo-dev-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/lingo-dev.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/lingo-dev.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Lingo.dev Engine API](https://apis.io/collections/lingo-dev/open-lingo-dev/)
+- [Lingo.dev Engine Account API](https://apis.io/collections/lingo-dev/open-lingo-dev-account-api/)
+- [Lingo.dev Engine Account Asynchronous API](https://apis.io/collections/lingo-dev/open-lingo-dev-asynchronous-api/)
+- [Lingo.dev Engine Account Synchronous API](https://apis.io/collections/lingo-dev/open-lingo-dev-synchronous-api/)
 
-### Lingo.dev SDK
+#### Security (3)
 
-Open-source SDKs (JavaScript/TypeScript via the lingo.dev npm package, plus a PHP SDK) that wrap the Engine API. The LingoDotDevEngine client exposes localizeText, localizeObject, localizeChat, localizeHtml, localizeStringArray, batchLocalizeText, recognizeLocale, estimate, and whoami, calling the same hosted engine.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://lingo.dev/en/sdk/javascript](https://lingo.dev/en/sdk/javascript)
-- **Base URL:** `https://api.lingo.dev`
+- [Lingo Dev Authentication](https://apis.io/security/lingo-dev/lingo-dev-authentication/)
+- [Lingo Dev Domain Security](https://apis.io/security/lingo-dev/lingo-dev-domain-security/)
+- [Lingo Dev Vulnerability Disclosure](https://apis.io/security/lingo-dev/lingo-dev-vulnerability-disclosure/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- SDK
-- JavaScript
-- PHP
-- Open Source
+Published plans, tiers and prices.
 
-#### Properties
+- [Lingo Dev Plans Pricing](https://apis.io/plans/lingo-dev/lingo-dev-plans-pricing/)
 
-- [Documentation](https://lingo.dev/en/sdk/javascript)
-- [SDK](https://www.npmjs.com/package/lingo.dev)
-- [OpenAPI](openapi/lingo-dev-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+#### Rate limits (1)
 
-### Lingo.dev CLI
+Published request limits.
 
-Open-source command-line tool that localizes JSON, YAML, Markdown, CSV, and PO files in one command, tracking a lockfile so only new or changed content is processed. Connects to the Lingo.dev engine by default and can bring your own LLM (OpenAI, Anthropic, Google, Mistral, OpenRouter, Ollama).
+- [Lingo Dev Rate Limits](https://apis.io/rate-limits/lingo-dev/lingo-dev-rate-limits/)
 
-- **Human URL:** [https://lingo.dev/en/cli](https://lingo.dev/en/cli)
-- **Base URL:** `https://api.lingo.dev`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- CLI
-- Open Source
-- i18n
-- CI/CD
+- [Lingo Dev Finops](https://apis.io/finops/lingo-dev/lingo-dev-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://lingo.dev/en/cli/quick-start)
-- [Source Code](https://github.com/lingodotdev/lingo.dev)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Lingo.dev Compiler
-
-Open-source build-time React localization. The Compiler detects translatable strings and generates localized variants at build time without i18n wrappers, translation keys, or t() function calls, using the same localization engine behind the scenes.
-
-- **Human URL:** [https://lingo.dev/en/compiler](https://lingo.dev/en/compiler)
-- **Base URL:** `https://api.lingo.dev`
-
-#### Tags
-
-- Compiler
-- React
-- Open Source
-- Build Time
-
-#### Properties
-
-- [Documentation](https://lingo.dev/en/compiler)
-- [Source Code](https://github.com/lingodotdev/lingo.dev)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/lingodotdev)
-- [LinkedIn](https://www.linkedin.com/company/lingodotdev)
 - [Website](https://lingo.dev)
 - [Documentation](https://lingo.dev/en/docs)
-- [Plans](plans/lingo-dev-plans-pricing.yml)
-- [Rate Limits](rate-limits/lingo-dev-rate-limits.yml)
-- [Fin Ops](finops/lingo-dev-finops.yml)
+- [Pricing](https://lingo.dev/en/pricing)
+- [Blog](https://lingo.dev/en/blog)
+- [GitHub](https://github.com/lingodotdev)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 36.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 50.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 39.3 |
+| Access clarity | 42.1 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/lingo-dev/](https://apis.io/providers/lingo-dev/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Lingo.dev: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/lingo-dev/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
